@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Congratulations!!</title>
+    <title>مبروك!!</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Arial';
+            background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+            color: #1a1a1a;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -30,120 +30,209 @@
             padding: 20px;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
+        /* Egyptian flag accent bar */
+        .egypt-accent {
+            height: 4px;
+            background: linear-gradient(to right, #CE1126 33%, #FFFFFF 33%, #FFFFFF 66%, #000000 66%);
+            border-radius: 2px;
             margin-bottom: 24px;
-            color: #0d1a36;
-            line-height: 1.3;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a3a5c;
+            line-height: 1.4;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .congrats-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            display: block;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .timer-container {
-            background: #e8f5e9;
-            border: 2px solid #2e9c4a;
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 32px;
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 24px 0 32px;
             display: inline-block;
-            min-width: 140px;
+            min-width: 160px;
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25);
         }
 
         .timer-text {
-            font-size: 1.05rem;
-            color: #1b5e20;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #856404;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
 
         #countdown {
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: #d32f2f;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #dc3545;
             line-height: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Arial Black', sans-serif;
         }
 
         .btn {
-            background: #0d6e2e;
+            background: linear-gradient(135deg, #1e7e34 0%, #155724 100%);
             color: white;
             border: none;
-            padding: 18px 40px;
-            font-size: 1.35rem;
-            font-weight: 700;
-            border-radius: 8px;
+            padding: 20px 32px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(13, 110, 46, 0.35);
-            min-height: 60px;
+            box-shadow: 0 6px 20px rgba(30, 126, 52, 0.45);
+            min-height: 64px;
             width: 100%;
-            max-width: 380px;
+            max-width: 400px;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background: #0a5a24;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(13, 110, 46, 0.45);
+            background: linear-gradient(135deg, #19692c 0%, #124a1f 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 126, 52, 0.55);
         }
 
         .btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 10px rgba(13, 110, 46, 0.3);
+            box-shadow: 0 3px 12px rgba(30, 126, 52, 0.35);
         }
 
         .btn svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             fill: currentColor;
+            transform: scaleX(-1); /* Flip arrow for RTL */
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 28px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge svg {
+            width: 16px;
+            height: 16px;
+            fill: #28a745;
         }
 
         .footer {
-            margin-top: 45px;
-            font-size: 0.85rem;
-            color: #d32f2f;
-            line-height: 1.5;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #6c757d;
+            line-height: 1.6;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            width: 100%;
+            max-width: 450px;
         }
 
         .footer a {
-            color: #d32f2f;
+            color: #1e7e34;
             text-decoration: none;
-            border-bottom: 1px solid #d32f2f;
-            padding-bottom: 2px;
+            border-bottom: 1px dashed #1e7e34;
+            padding-bottom: 1px;
+            transition: opacity 0.2s;
         }
 
         .footer a:hover {
             opacity: 0.85;
         }
 
+        .egypt-note {
+            background: #e7f3ff;
+            border-right: 4px solid #0d6efd;
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #084298;
+            text-align: right;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.9rem;
-                margin-bottom: 20px;
+                font-size: 1.85rem;
+                margin-bottom: 16px;
+            }
+            .congrats-icon {
+                font-size: 3rem;
             }
             .timer-container {
-                padding: 12px;
-                min-width: 130px;
+                padding: 14px 18px;
+                min-width: 145px;
             }
             .timer-text {
                 font-size: 1rem;
             }
             #countdown {
-                font-size: 2.2rem;
+                font-size: 2.6rem;
             }
             .btn {
-                padding: 18px 32px;
-                font-size: 1.25rem;
+                padding: 18px 28px;
+                font-size: 1.3rem;
                 max-width: 100%;
             }
             .footer {
-                font-size: 0.82rem;
-                margin-top: 40px;
+                font-size: 0.78rem;
+                margin-top: 35px;
             }
         }
 
@@ -152,39 +241,88 @@
                 padding: 16px;
             }
             h1 {
-                font-size: 1.75rem;
+                font-size: 1.7rem;
             }
             #countdown {
-                font-size: 2rem;
+                font-size: 2.3rem;
             }
             .btn {
-                padding: 17px 28px;
+                padding: 17px 24px;
                 font-size: 1.2rem;
+            }
+            .trust-badges {
+                gap: 10px;
+            }
+            .badge {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Smooth animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .btn {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .timer-container {
+                animation: pulse 2s infinite;
+            }
+            @keyframes pulse {
+                0%, 100% { box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25); }
+                50% { box-shadow: 0 6px 18px rgba(255, 193, 7, 0.4); }
             }
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <h1>Congratulations!!</h1>
+        <!-- Egyptian flag accent -->
+        <div class="egypt-accent"></div>
+        
+        <span class="congrats-icon">🎉</span>
+        <h1>مبروك!! 🇪🇬<br>فرصتك جاهزة</h1>
+
+        <div class="egypt-note">
+            ⚡ متاحة حاليًا للمستخدمين في مصر فقط - استفد قبل ما تخلص!
+        </div>
 
         <div class="timer-container">
-            <div class="timer-text">Time remaining:</div>
+            <div class="timer-text">الوقت المتبقي:</div>
             <div id="countdown">5</div>
-            <div class="timer-text">Click on "START NOW" to cash out!</div>
+            <div class="timer-text">اضغط على "ابدأ الآن" للاستفادة!</div>
+        </div>
+
+        <!-- Trust badges for Egyptian audience -->
+        <div class="trust-badges">
+            <div class="badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7l-9-5zm0 2.5L19 9v10H5V9l7-4.5z"/></svg>
+                آمن 100%
+            </div>
+            <div class="badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                مجاني تمامًا
+            </div>
+            <div class="badge">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                دعم فوري
+            </div>
         </div>
 
         <button class="btn" id="startBtn">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 17l-5-5 5-5z"/>
             </svg>
-            START NOW
+            ابدأ الآن
         </button>
 
         <div class="footer">
-            © 2026. All rights reserved. | 
-            <a href="https://malawiansadsversion3.blogspot.com/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> | 
-            <a href="#" onclick="alert('Terms & Conditions Apply'); return false;">Terms & Conditions Apply</a>
+            © 2026 جميع الحقوق محفوظة لمصر 🇪🇬 | 
+            <a href="https://malawiansadsversion3.blogspot.com/" target="_blank" rel="noopener noreferrer">سياسة الخصوصية</a> | 
+            <a href="#" onclick="alert('تنطبق الشروط والأحكام'); return false;">الشروط والأحكام</a>
+            <br><br>
+            <small style="color: #adb5bd; font-size: 0.75rem;">
+                هذه الصفحة مخصصة للمستخدمين في جمهورية مصر العربية فقط
+            </small>
         </div>
     </div>
 
@@ -198,7 +336,7 @@
         // Update display immediately
         countdownEl.textContent = seconds;
 
-        // Start countdown
+        // Start countdown with Egyptian-style sound effect hint (visual only)
         const interval = setInterval(() => {
             if (!timerRunning) {
                 clearInterval(interval);
@@ -207,6 +345,17 @@
 
             seconds--;
             countdownEl.textContent = seconds;
+            
+            // Add urgency animation at 3 seconds
+            if (seconds === 3) {
+                countdownEl.style.color = '#fd7e14';
+                countdownEl.style.transform = 'scale(1.05)';
+            }
+            // Final urgency at 1 second
+            if (seconds === 1) {
+                countdownEl.style.color = '#dc3545';
+                countdownEl.style.animation = 'pulse 0.3s infinite';
+            }
         }, 1000);
 
         // Button click handler (instant redirect, stops timer)
@@ -214,14 +363,24 @@
             e.preventDefault();
             timerRunning = false;
             clearInterval(interval);
-            window.location.href = 'https://chat.whatsapp.com/K6AL7O3e19dLrT4zZRe2WQ?mode=gi_t';
+            
+            // Add haptic feedback simulation for mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+            
+            // Redirect to your WhatsApp group
+            window.location.href = 'https://ln.run/fFLg0';
         }, { passive: true });
 
-        // Prevent accidental back navigation on mobile
+        // Prevent accidental back navigation on mobile (Egyptian users often use mobile)
         history.pushState(null, null, location.href);
         window.addEventListener('popstate', function() {
             history.pushState(null, null, location.href);
         });
+
+        // Add touch optimization for Egyptian mobile users
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
