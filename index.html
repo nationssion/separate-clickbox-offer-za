@@ -1,386 +1,549 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>مبروك!!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Network Rewards | Claim Now</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #FFD700;
+            --secondary: #00A651; /* Econet Green */
+            --accent: #0033A0;    /* NetOne Blue */
+            --danger: #E60000;    /* Telecel Red */
+            --bg-dark: #0a0a0c;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Arial';
-            background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
-            color: #1a1a1a;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(26, 60, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 204, 0, 0.1) 0%, transparent 40%);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            text-align: center;
+            justify-content: center;
+            overflow-x: hidden;
         }
 
-        .content {
-            max-width: 500px;
+        /* Ambient Background Animation */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 20px;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
         }
 
-        /* Egyptian flag accent bar */
-        .egypt-accent {
-            height: 4px;
-            background: linear-gradient(to right, #CE1126 33%, #FFFFFF 33%, #FFFFFF 66%, #000000 66%);
-            border-radius: 2px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(110%, 110%); }
+        }
+
+        /* Container & Glassmorphism */
+        .app-container {
+            width: 90%;
+            max-width: 450px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header Styles */
+        .badge {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         h1 {
-            font-size: 2.1rem;
+            font-size: 28px;
             font-weight: 800;
-            margin-bottom: 20px;
-            color: #1a3a5c;
-            line-height: 1.4;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            line-height: 1.2;
+            background: linear-gradient(to bottom, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .congrats-icon {
-            font-size: 3.5rem;
-            margin-bottom: 16px;
-            display: block;
-            animation: bounce 1.5s infinite;
+        p.subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            margin-bottom: 32px;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        /* Game Elements: Network Grid */
+        .network-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
-        .timer-container {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 14px;
-            padding: 16px 20px;
-            margin: 24px 0 32px;
-            display: inline-block;
-            min-width: 160px;
-            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25);
-        }
-
-        .timer-text {
-            font-size: 1.1rem;
-            color: #856404;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        #countdown {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #dc3545;
-            line-height: 1;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            font-family: 'Arial Black', sans-serif;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #1e7e34 0%, #155724 100%);
-            color: white;
-            border: none;
-            padding: 20px 32px;
-            font-size: 1.4rem;
-            font-weight: 800;
-            border-radius: 12px;
+        .network-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
             cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            text-decoration: none;
-            box-shadow: 0 6px 20px rgba(30, 126, 52, 0.45);
-            min-height: 64px;
-            width: 100%;
-            max-width: 400px;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            justify-content: space-between;
             position: relative;
             overflow: hidden;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+        .network-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .btn:hover::before {
-            left: 100%;
-        }
+        .network-card.econet:hover { border-color: var(--secondary); box-shadow: 0 0 20px rgba(0, 166, 81, 0.2); }
+        .network-card.netone:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 51, 160, 0.2); }
+        .network-card.telecel:hover { border-color: var(--danger); box-shadow: 0 0 20px rgba(230, 0, 0, 0.2); }
+        .network-card.airtel:hover { border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.2); }
+        .network-card.mtn:hover { border-color: #ffcc00; box-shadow: 0 0 20px rgba(255, 204, 0, 0.2); }
+        .network-card.zamtel:hover { border-color: #00833e; box-shadow: 0 0 20px rgba(0, 131, 62, 0.2); }
 
-        .btn:hover {
-            background: linear-gradient(135deg, #19692c 0%, #124a1f 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(30, 126, 52, 0.55);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 12px rgba(30, 126, 52, 0.35);
-        }
-
-        .btn svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-            transform: scaleX(-1); /* Flip arrow for RTL */
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin: 28px 0 20px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 8px 14px;
-            font-size: 0.85rem;
-            color: #495057;
+        .network-info {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 12px;
         }
 
-        .badge svg {
-            width: 16px;
-            height: 16px;
-            fill: #28a745;
+        .network-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #fff;
         }
 
-        .footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            color: #6c757d;
-            line-height: 1.6;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
+        .econet .network-icon { background: var(--secondary); }
+        .netone .network-icon { background: var(--accent); }
+        .telecel .network-icon { background: var(--danger); }
+        .airtel .network-icon { background: #ff0000; }
+        .mtn .network-icon { background: #ffcc00; color: #000; }
+        .zamtel .network-icon { background: #00833e; }
+
+        .network-name {
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .unlock-label {
+            font-size: 11px;
+            color: var(--primary);
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* Loading / Scanning View */
+        .view-hidden {
+            display: none;
+        }
+
+        .scanner-box {
+            padding: 40px 0;
+        }
+
+        .radar {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar::after {
+            content: '';
+            position: absolute;
             width: 100%;
-            max-width: 450px;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
         }
 
-        .footer a {
-            color: #1e7e34;
-            text-decoration: none;
-            border-bottom: 1px dashed #1e7e34;
-            padding-bottom: 1px;
-            transition: opacity 0.2s;
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
-        .footer a:hover {
-            opacity: 0.85;
+        .scanning-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 15px var(--primary);
+            animation: scan 2s linear infinite;
         }
 
-        .egypt-note {
-            background: #e7f3ff;
-            border-right: 4px solid #0d6efd;
-            padding: 12px 16px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.9rem;
-            color: #084298;
-            text-align: right;
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.85rem;
-                margin-bottom: 16px;
-            }
-            .congrats-icon {
-                font-size: 3rem;
-            }
-            .timer-container {
-                padding: 14px 18px;
-                min-width: 145px;
-            }
-            .timer-text {
-                font-size: 1rem;
-            }
-            #countdown {
-                font-size: 2.6rem;
-            }
-            .btn {
-                padding: 18px 28px;
-                font-size: 1.3rem;
-                max-width: 100%;
-            }
-            .footer {
-                font-size: 0.78rem;
-                margin-top: 35px;
-            }
+        /* Success View */
+        .reward-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        @media (max-width: 360px) {
-            .content {
-                padding: 16px;
-            }
-            h1 {
-                font-size: 1.7rem;
-            }
-            #countdown {
-                font-size: 2.3rem;
-            }
-            .btn {
-                padding: 17px 24px;
-                font-size: 1.2rem;
-            }
-            .trust-badges {
-                gap: 10px;
-            }
-            .badge {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
+        .cta-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Smooth animations */
-        @media (prefers-reduced-motion: no-preference) {
-            .btn {
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .timer-container {
-                animation: pulse 2s infinite;
-            }
-            @keyframes pulse {
-                0%, 100% { box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25); }
-                50% { box-shadow: 0 6px 18px rgba(255, 193, 7, 0.4); }
-            }
+        .cta-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Urgency Footer */
+        .footer-info {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .stat-item span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Ticker Notification */
+        .notification-ticker {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 13px;
+            white-space: nowrap;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideUp 0.5s ease-out;
+            transition: opacity 0.5s;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        @keyframes slideUp {
+            from { transform: translate(-50%, 50px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        /* Confetti Canvas */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <!-- Egyptian flag accent -->
-        <div class="egypt-accent"></div>
-        
-        <span class="congrats-icon">🎉</span>
-        <h1>مبروك!! 🇪🇬<br>فرصتك جاهزة</h1>
 
-        <div class="egypt-note">
-            ⚡ متاحة حاليًا للمستخدمين في مصر فقط - استفد قبل ما تخلص!
+    <div class="ambient-bg">
+        <div class="blob"></div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <!-- STEP 1: SELECT NETWORK -->
+    <div class="app-container" id="step1">
+        <div class="badge">Limited Offer</div>
+        <h1>Unlock Your Reward</h1>
+        <p class="subtitle">Select your network to scan for available data & airtime bonuses.</p>
+
+        <div class="network-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="network-card econet" onclick="startScan('Econet')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">E</div>
+                    <span class="network-name" style="font-size: 14px;">Econet</span>
+                </div>
+            </div>
+            <div class="network-card netone" onclick="startScan('NetOne')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">N</div>
+                    <span class="network-name" style="font-size: 14px;">NetOne</span>
+                </div>
+            </div>
+            <div class="network-card telecel" onclick="startScan('Telecel')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">T</div>
+                    <span class="network-name" style="font-size: 14px;">Telecel</span>
+                </div>
+            </div>
+            <div class="network-card airtel" onclick="startScan('Airtel')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">A</div>
+                    <span class="network-name" style="font-size: 14px;">Airtel</span>
+                </div>
+            </div>
+            <div class="network-card mtn" onclick="startScan('MTN')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">M</div>
+                    <span class="network-name" style="font-size: 14px;">MTN</span>
+                </div>
+            </div>
+            <div class="network-card zamtel" onclick="startScan('Zamtel')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">Z</div>
+                    <span class="network-name" style="font-size: 14px;">Zamtel</span>
+                </div>
+            </div>
         </div>
 
-        <div class="timer-container">
-            <div class="timer-text">الوقت المتبقي:</div>
-            <div id="countdown">5</div>
-            <div class="timer-text">اضغط على "ابدأ الآن" للاستفادة!</div>
-        </div>
-
-        <!-- Trust badges for Egyptian audience -->
-        <div class="trust-badges">
-            <div class="badge">
-                <svg viewBox="0 0 24 24"><path d="M12 2L3 7v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7l-9-5zm0 2.5L19 9v10H5V9l7-4.5z"/></svg>
-                آمن 100%
+        <div class="footer-info">
+            <div class="stats">
+                <div class="stat-item">Remaining: <span id="slots">87</span></div>
+                <div class="stat-item">Expires: <span id="timer">04:59</span></div>
             </div>
-            <div class="badge">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                مجاني تمامًا
-            </div>
-            <div class="badge">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                دعم فوري
-            </div>
-        </div>
-
-        <button class="btn" id="startBtn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 17l-5-5 5-5z"/>
-            </svg>
-            ابدأ الآن
-        </button>
-
-        <div class="footer">
-            © 2026 جميع الحقوق محفوظة لمصر 🇪🇬 | 
-            <a href="https://malawiansadsversion3.blogspot.com/" target="_blank" rel="noopener noreferrer">سياسة الخصوصية</a> | 
-            <a href="#" onclick="alert('تنطبق الشروط والأحكام'); return false;">الشروط والأحكام</a>
-            <br><br>
-            <small style="color: #adb5bd; font-size: 0.75rem;">
-                هذه الصفحة مخصصة للمستخدمين في جمهورية مصر العربية فقط
-            </small>
         </div>
     </div>
 
+    <!-- STEP 2: SCANNING -->
+    <div class="app-container view-hidden" id="step2">
+        <div class="badge" id="scan-badge">Scanning...</div>
+        <h1 id="scan-title">Detecting Econet</h1>
+        <div class="scanner-box">
+            <div class="radar">
+                <div class="scanning-line"></div>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <p id="progress-text" style="color: var(--primary); font-weight: 600;">Connecting to server...</p>
+        </div>
+    </div>
+
+    <!-- STEP 3: SUCCESS -->
+    <div class="app-container view-hidden" id="step3">
+        <div class="badge" style="background: rgba(0, 255, 0, 0.1); color: #00ff00; border-color: rgba(0, 255, 0, 0.2);">Verification Success</div>
+        <h1>CONGRATULATIONS!</h1>
+        <p class="subtitle" id="congrats-text">We found an exclusive bonus for your number</p>
+        
+        <div class="reward-amount">15GB + $50</div>
+        <p style="font-size: 14px; opacity: 0.7;">Airtime & Data Reward</p>
+
+        <button class="cta-button" onclick="finalize()">Claim Reward Now</button>
+        
+        <p style="font-size: 11px; margin-top: 15px; opacity: 0.5;">* Bonus must be claimed within 5 minutes</p>
+    </div>
+
+    <div class="notification-ticker" id="ticker">
+        <div class="dot"></div>
+        <span id="ticker-text">+263***4521 just received 10GB bonus</span>
+    </div>
+
     <script>
-        // 5-second countdown with auto-redirect
-        let seconds = 5;
-        const countdownEl = document.getElementById('countdown');
-        const btn = document.getElementById('startBtn');
-        let timerRunning = true;
-
-        // Update display immediately
-        countdownEl.textContent = seconds;
-
-        // Start countdown with Egyptian-style sound effect hint (visual only)
-        const interval = setInterval(() => {
-            if (!timerRunning) {
-                clearInterval(interval);
-                return;
-            }
-
-            seconds--;
-            countdownEl.textContent = seconds;
-            
-            // Add urgency animation at 3 seconds
-            if (seconds === 3) {
-                countdownEl.style.color = '#fd7e14';
-                countdownEl.style.transform = 'scale(1.05)';
-            }
-            // Final urgency at 1 second
-            if (seconds === 1) {
-                countdownEl.style.color = '#dc3545';
-                countdownEl.style.animation = 'pulse 0.3s infinite';
+        const offerLink = "https://ln.run/SK9f2";
+        
+        // Timer Logic
+        let time = 300; // 5 minutes
+        const timerEl = document.getElementById('timer');
+        setInterval(() => {
+            if(time > 0) {
+                time--;
+                let m = Math.floor(time / 60);
+                let s = time % 60;
+                timerEl.innerText = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
             }
         }, 1000);
 
-        // Button click handler (instant redirect, stops timer)
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            timerRunning = false;
-            clearInterval(interval);
-            
-            // Add haptic feedback simulation for mobile
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
+        // Slots Logic
+        let slots = 87;
+        setInterval(() => {
+            if(slots > 5) {
+                slots -= Math.floor(Math.random() * 2);
+                document.getElementById('slots').innerText = slots;
             }
-            
-            // Redirect to your WhatsApp group
-            window.location.href = 'https://1buv.com/link?z=10462815&var={SOURCE_ID}&ymid={CLICK_ID}';
-        }, { passive: true });
+        }, 8000);
 
-        // Prevent accidental back navigation on mobile (Egyptian users often use mobile)
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', function() {
-            history.pushState(null, null, location.href);
-        });
+        // Ticker Logic
+        const testimonies = [
+            "+263***4521 just received 10GB and $20 airtime",
+            "+260***1124 just received 15GB and $50 airtime",
+            "+263***9932 just received 5GB and $10 airtime",
+            "+260***8842 just received 10GB and $30 airtime",
+            "+263***7710 just received 15GB and $50 airtime",
+            "+260***6621 just received 5GB and $10 airtime",
+            "+263***6284 just received 2GB and $5 airtime",
+            "+263***3345 just received 10GB and $30 airtime",
+            "+260***9921 just received 15GB and $50 airtime"
+        ];
+        
+        setInterval(() => {
+            const ticker = document.getElementById('ticker');
+            ticker.style.opacity = '0';
+            setTimeout(() => {
+                const random = Math.floor(Math.random() * testimonies.length);
+                document.getElementById('ticker-text').innerText = testimonies[random];
+                ticker.style.opacity = '1';
+            }, 500);
+        }, 5000);
 
-        // Add touch optimization for Egyptian mobile users
-        document.addEventListener('touchstart', function() {}, {passive: true});
+        // Game Flow
+        function startScan(network) {
+            document.getElementById('step1').classList.add('view-hidden');
+            document.getElementById('step2').classList.remove('view-hidden');
+            document.getElementById('scan-title').innerText = `Scanning ${network}`;
+
+            const progressSteps = [
+                "Locating network tower...",
+                "Verifying SIM eligibility...",
+                "Checking reward pool...",
+                "Generating secure link...",
+                "Bonus found!"
+            ];
+
+            let p = 0;
+            const progressInt = setInterval(() => {
+                document.getElementById('progress-text').innerText = progressSteps[p];
+                p++;
+                if(p >= progressSteps.length) {
+                    clearInterval(progressInt);
+                    setTimeout(showSuccess, 800);
+                }
+            }, 800);
+        }
+
+        function showSuccess() {
+            document.getElementById('step2').classList.add('view-hidden');
+            document.getElementById('step3').classList.remove('view-hidden');
+            startConfetti();
+        }
+
+        function finalize() {
+            window.location.href = offerLink;
+        }
+
+        // Simple Confetti
+        function startConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            for(let i=0; i<100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 7 + 3,
+                    color: ['#FFD700', '#ffffff', '#00ff00', '#0033A0'][Math.floor(Math.random() * 4)],
+                    speed: Math.random() * 5 + 2,
+                    angle: Math.random() * 6.28
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, 6.28);
+                    ctx.fill();
+                    p.y += p.speed;
+                    p.x += Math.sin(p.angle) * 2;
+                    if(p.y > canvas.height) p.y = -10;
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
     </script>
 </body>
 </html>
